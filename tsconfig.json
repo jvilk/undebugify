@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "ES3",
+        "declaration": true,
+        "sourceMap": true,
+        "noImplicitAny": true,
+        "outDir": "js"
+    },
+    "files": [
+        "typings/tsd.d.ts",
+        "ts/index.ts",
+        "ts/browserify-transform-tools.d.ts",
+        "ts/interfaces.ts"
+    ]
+}
