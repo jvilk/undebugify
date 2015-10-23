@@ -18,12 +18,15 @@ function isIdentifier(node: ESTree.Expression): node is ESTree.Identifier {
 }
 
 
-export = transformTools.makeFalafelTransform<IUndebugifyOptions>("array-fnify", {
- jsFilesOnly: true
+export = transformTools.makeFalafelTransform<IUndebugifyOptions>("undebugify", {
+ includeExtensions: ['.ts', '.js']
 }, function (node, transformOptions, done): void {
   // Remove CallExpressions representing:
   // aFunctionInRemove(<any>)
   var toRemove = transformOptions.configData.config.remove;
+  if (!Array.isArray(toRemove)) {
+    throw new TypeError(`Invalid configuration: ${toRemove}`);
+  }
   if (isFalafelExpressionStatement(node)) {
     var expression = node.expression;
     if (isFalafelCallExpression(expression)) {
